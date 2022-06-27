@@ -9,6 +9,9 @@ function writePassword() {
   passwordText.value = password;
 
 }
+function generatePassword() {
+  console.log ("Push me!")
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
