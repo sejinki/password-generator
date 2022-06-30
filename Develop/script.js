@@ -57,32 +57,11 @@ function getPrompts(){
   return false;
   }
 
-  // if (confirm("Do you want lowercase letters in your password?")) {
-  // choiceArray = choiceArray.concat(uppercase);
-  // console.log(choiceArray + "line 49")
-  // }
   var hasLowercase = confirm("Do you want lowercase letters in your password?");
-  
-
-  // if (confirm("Do you want uppercase letters in your password?")) {
-  // choiceArray = choiceArray.concat(lowercase);
-  // console.log(choiceArray + "line 55")
-  // }
 
   var hasUppercase = confirm("Do you want uppercase letters in your password?");
 
-  // if (confirm("Do you want numbers in your password?")) {
-  // choiceArray = choiceArray.concat(numbers);
-  // console.log(choiceArray + "line 60")
-  // } 
-
   var hasNumbers = (confirm("Do you want numbers in your password?"));
-  
-  // if (confirm("Do you want special characters in your password?")) {
-  // choiceArray = choiceArray.concat(specialCharacter);
-  // console.log(choiceArray + "line 65")
-  // }
-  // return true;
 
   var hasSpecialCharacter = (confirm("Do you want special characters in your password?"));
   if (hasSpecialCharacter === false &&
