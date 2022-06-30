@@ -25,9 +25,9 @@ function writePassword() {
 
 function generatePassword() {
   console.log ("Push me!")
-  console.log (characterLength + "line 28")
+  console.log (hasCharacterLength + "line 28")
   var password = "";
-  for(var i = 0; i < characterLength; i++) {
+  for(var i = 0; i < hasCharacterLength; i++) {
     var randomIndex = Math.floor(Math.Random() * choiceArray.length);
     password = password + choiceArray[randomIndex];
     console.log(choiceArray + "before");
@@ -42,34 +42,54 @@ generateBtn.addEventListener("click", writePassword);
 
 function getPrompts(){
 
-  choiceArray [];
-
-  characterLength = parseInt(prompt("How many characters do you want in your password? (8 - 128 characters"));
+  hasCharacterLength = parseInt(prompt("How many characters do you want in your password? (8 - 128 characters"));
 
   if(isNaN(characterLength) || characterLength < 8 || characterLength > 128) {
   alert("Character length has to be a number between 8 - 128 digits. Try again, please.");
   return false;
   }
 
-  if (confirm("Do you want lowercase letters in your password?")) {
-  choiceArray = choiceArray.concat(uppercase);
-  console.log(choiceArray + "line 49")
-  }
+  // if (confirm("Do you want lowercase letters in your password?")) {
+  // choiceArray = choiceArray.concat(uppercase);
+  // console.log(choiceArray + "line 49")
+  // }
+  var hasLowercase = confirm("Do you want lowercase letters in your password?");
   
 
-  if (confirm("Do you want uppercase letters in your password?")) {
-  choiceArray = choiceArray.concat(lowercase);
-  console.log(choiceArray + "line 55")
-  }
+  // if (confirm("Do you want uppercase letters in your password?")) {
+  // choiceArray = choiceArray.concat(lowercase);
+  // console.log(choiceArray + "line 55")
+  // }
 
-  if (confirm("Do you want numbers in your password?")) {
-  choiceArray = choiceArray.concat(numbers);
-  console.log(choiceArray + "line 60")
-  } 
+  var hasUppercase = confirm("Do you want uppercase letters in your password?");
 
-  if (confirm("Do you want special characters in your password?")) {
-  choiceArray = choiceArray.concat(specialCharacter);
-  console.log(choiceArray + "line 65")
+  // if (confirm("Do you want numbers in your password?")) {
+  // choiceArray = choiceArray.concat(numbers);
+  // console.log(choiceArray + "line 60")
+  // } 
+
+  var hasNumbers = (confirm("Do you want numbers in your password?"));
+  
+  // if (confirm("Do you want special characters in your password?")) {
+  // choiceArray = choiceArray.concat(specialCharacter);
+  // console.log(choiceArray + "line 65")
+  // }
+  // return true;
+
+  var hasSpecialCharacter = (confirm("Do you want special characters in your password?"));
+  if (specialCharacter === false &&
+      hasLowercase === false &&
+      hasUppercase === false &&
+      hasNumbers === false )
+    {alert("must include at least one or more options for password.")
+    return null;
   }
-  return true;
+var userChoices = {
+  LongcharacterLength: LongcharacterLength,
+  hasSpecialCharacter: hasSpecialCharacter,
+  hasLowercase: hasLowercase,
+  hasUppercase: hasUppercase,
+  hasNumbers: hasUumbers,
+}
+return userChoices
 }
