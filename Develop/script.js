@@ -1,8 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
-var choiceArray = [];
-var characterLength = 8;
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0' ];
 var specialCharacter= [ '!','@','#','$','%','^','&','*','(',')','-','_','+','=' ];
@@ -15,34 +14,43 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   if (correctPrompts) {
-    var newPassword = generatePassword();
+    var newPassword = generatePassword(correctPrompts);
     passwordText.value = newPassword;
   } else {
     passwordText.value = "";
   }
-
 }
 
-function generatePassword() {
+function generatePassword(userChoices) {
   console.log ("Push me!")
-  console.log (hasCharacterLength + "line 28")
+  console.log (userChoices.characterLength)
+  var selectedCharacters = [];
+  if (userChoices.hasLowercase) {
+    selectedCharacters = selectedCharacters.concat(lowercase)
+  }
+  if (userChoices.hasUppercase) {
+    selectedCharacters = selectedCharacters.concat(uppercase)
+  }
+  if (userChoices.hasSpecialCharacter) {
+    selectedCharacters = selectedCharacters.concat(specialCharacter)
+  }
+  if (userChoices.hasNumbers) {
+    selectedCharacters = selectedCharacters.concat(numbers)
+  }
+  console.log(selectedCharacters)
+
   var password = "";
-  for(var i = 0; i < hasCharacterLength; i++) {
-    var randomIndex = Math.floor(Math.Random() * choiceArray.length);
-    password = password + choiceArray[randomIndex];
-    console.log(choiceArray + "before");
-    choiceArray.push ("o");
-    console.log(choiceArray + "after");
+  for (var i = 0; i < userChoices.characterLength; i++) {
+    var randomIndex = Math.floor(Math.random() * selectedCharacters.length);
+    password = password + selectedCharacters[randomIndex];
 }
 return password;
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
 
 function getPrompts(){
 
-  hasCharacterLength = parseInt(prompt("How many characters do you want in your password? (8 - 128 characters"));
+  var characterLength = parseInt(prompt("How many characters do you want in your password? (8 - 128 characters"));
 
   if(isNaN(characterLength) || characterLength < 8 || characterLength > 128) {
   alert("Character length has to be a number between 8 - 128 digits. Try again, please.");
@@ -77,7 +85,7 @@ function getPrompts(){
   // return true;
 
   var hasSpecialCharacter = (confirm("Do you want special characters in your password?"));
-  if (specialCharacter === false &&
+  if (hasSpecialCharacter === false &&
       hasLowercase === false &&
       hasUppercase === false &&
       hasNumbers === false )
@@ -85,11 +93,11 @@ function getPrompts(){
     return null;
   }
 var userChoices = {
-  LongcharacterLength: LongcharacterLength,
+  characterLength: characterLength,
   hasSpecialCharacter: hasSpecialCharacter,
   hasLowercase: hasLowercase,
   hasUppercase: hasUppercase,
-  hasNumbers: hasUumbers,
+  hasNumbers: hasNumbers,
 }
-return userChoices
+return userChoices;
 }
